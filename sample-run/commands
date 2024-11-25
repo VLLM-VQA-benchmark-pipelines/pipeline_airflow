@@ -1,0 +1,13 @@
+docker build -t reader:v1 -f Dockerfile.reader .
+docker build -t writer:v1 -f Dockerfile.writer . 
+
+docker run --rm -v $(pwd)/data:/data writer:v1
+docker run --rm -v $(pwd)/data:/data reader:v1
+
+airflow users create --username admin --password admin --firstname Firstname --lastname Lastname --role Admin --email admin@example.com
+
+pip install apache-airflow-providers-docker[common.compat]
+
+
+https://habr.com/ru/articles/860900/
+https://learn.microsoft.com/en-us/windows/wsl/tutorials/gpu-compute
